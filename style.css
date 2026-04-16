@@ -14,7 +14,7 @@
 }
 
 body {
-    font-family: 'Quicksand', sans-serif;
+    font-family: 'Outfit', sans-serif;
     /* Extra cute animated background */
     background: linear-gradient(-45deg, #ff9a9e, #fecfef, #fccb90, #d57eeb);
     background-size: 400% 400%;
@@ -94,16 +94,24 @@ header, section {
     box-shadow: 0 10px 40px rgba(63, 59, 61, 0.3);
     border: 2px solid var(--glass-border);
     max-width: 85%;
-    animation: floatPanel 4s ease-in-out infinite;
+    animation: floatHeroPanel 5s ease-in-out infinite;
+    transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
-@keyframes floatPanel {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-15px); }
+.hero-content:hover {
+    transform: scale(1.05) translateY(-5px);
+    box-shadow: 0 25px 60px rgba(255, 105, 180, 0.6);
+    border-color: rgba(255,255,255,1);
+    animation-play-state: paused;
+}
+
+@keyframes floatHeroPanel {
+    0%, 100% { transform: translateY(0) scale(1); box-shadow: 0 10px 40px rgba(63, 59, 61, 0.3); }
+    50% { transform: translateY(-15px) scale(1.02); box-shadow: 0 20px 50px rgba(255, 105, 180, 0.5); }
 }
 
 .hero h1 {
-    font-family: 'Pacifico', cursive;
+    font-family: 'Dancing Script', cursive;
     font-size: 5.5rem;
     color: #fff;
     text-shadow: 0px 4px 15px rgba(204, 91, 115, 0.8), 0px 0px 20px rgba(255,255,255,0.7);
@@ -143,7 +151,7 @@ header, section {
 }
 
 .section-title {
-    font-family: 'Pacifico', cursive;
+    font-family: 'Dancing Script', cursive;
     font-size: 5rem;
     color: #fff;
     text-shadow: 0px 4px 15px rgba(204, 91, 115, 0.8), 0 0 20px #fff;
@@ -211,6 +219,12 @@ header, section {
     box-shadow: 0 25px 45px rgba(255, 105, 180, 0.6);
     border-color: #ff69b4;
     z-index: 5;
+    animation: wiggleHover 0.8s ease-in-out infinite alternate;
+}
+
+@keyframes wiggleHover {
+    0% { transform: translateY(-25px) scale(1.08) rotate(2deg); }
+    100% { transform: translateY(-25px) scale(1.08) rotate(6deg); }
 }
 
 .gallery-item:hover img {
@@ -235,6 +249,32 @@ header, section {
     border: 3px solid rgba(255, 255, 255, 0.8);
     position: relative;
     overflow: hidden;
+    animation: floatAndGlow 6s ease-in-out infinite, borderMorph 8s ease-in-out infinite;
+    transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.message-card:hover {
+    transform: scale(1.05) translateY(-10px);
+    box-shadow: 0 30px 60px rgba(255, 105, 180, 0.8), inset 0 0 50px rgba(255, 255, 255, 0.9);
+    border: 3px solid rgba(255, 255, 255, 1);
+    animation-play-state: paused;
+}
+
+@keyframes floatAndGlow {
+    0%, 100% {
+        transform: translateY(0);
+        box-shadow: 0 15px 50px rgba(255, 105, 180, 0.4), inset 0 0 30px rgba(255,255,255,0.6);
+    }
+    50% {
+        transform: translateY(-20px);
+        box-shadow: 0 25px 60px rgba(255, 105, 180, 0.7), inset 0 0 50px rgba(255,255,255,0.9);
+    }
+}
+
+@keyframes borderMorph {
+    0%, 100% { border-radius: 40px; }
+    33% { border-radius: 60px 40px 60px 40px; }
+    66% { border-radius: 40px 60px 40px 60px; }
 }
 
 .message-card::before, .message-card::after {
@@ -249,7 +289,7 @@ header, section {
 .message-card::after { bottom: 20px; right: 20px; }
 
 .message-card h2 {
-    font-family: 'Pacifico', cursive;
+    font-family: 'Dancing Script', cursive;
     font-size: 4.5rem;
     color: #cc5b73;
     margin-bottom: 2rem;
